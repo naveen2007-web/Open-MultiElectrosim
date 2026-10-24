@@ -1,0 +1,182 @@
+{
+  "format": "ome-project",
+  "version": 1,
+  "name": "Combinational logic lab",
+  "parts": [
+    {
+      "id": "a",
+      "type": "logic-input",
+      "x": 220,
+      "y": 240,
+      "rotation": 0,
+      "ref": "A",
+      "values": {
+        "state": 1,
+        "high": 5
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 150,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "b",
+      "type": "logic-input",
+      "x": 220,
+      "y": 380,
+      "rotation": 0,
+      "ref": "B",
+      "values": {
+        "state": 0,
+        "high": 5
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 400,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "u1",
+      "type": "and",
+      "x": 480,
+      "y": 260,
+      "rotation": 0,
+      "ref": "U1",
+      "values": {
+        "high": 5,
+        "threshold": 2.5
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 650,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "u2",
+      "type": "not",
+      "x": 680,
+      "y": 260,
+      "rotation": 0,
+      "ref": "U2",
+      "values": {
+        "high": 5,
+        "threshold": 2.5
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 900,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "ch1",
+      "type": "scope",
+      "x": 850,
+      "y": 300,
+      "rotation": 90,
+      "ref": "CH1",
+      "values": {},
+      "firmware": "",
+      "footprint": {
+        "x": 150,
+        "y": 440,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "g1",
+      "type": "ground",
+      "x": 350,
+      "y": 500,
+      "rotation": 0,
+      "ref": "G1",
+      "values": {},
+      "firmware": "",
+      "footprint": {
+        "x": 400,
+        "y": 440,
+        "rotation": 0
+      }
+    }
+  ],
+  "wires": [
+    {
+      "id": "w0",
+      "a": "a:Q",
+      "b": "u1:A",
+      "points": [
+        {
+          "x": 350,
+          "y": 240
+        },
+        {
+          "x": 350,
+          "y": 244
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w1",
+      "a": "b:Q",
+      "b": "u1:B",
+      "points": [
+        {
+          "x": 370,
+          "y": 380
+        },
+        {
+          "x": 370,
+          "y": 276
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w2",
+      "a": "u1:Y",
+      "b": "u2:A",
+      "points": [],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w3",
+      "a": "u2:Y",
+      "b": "ch1:1",
+      "points": [],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w4",
+      "a": "ch1:2",
+      "b": "g1:GND",
+      "points": [
+        {
+          "x": 850,
+          "y": 500
+        }
+      ],
+      "color": "#7bdcba"
+    }
+  ],
+  "traces": [],
+  "vias": [],
+  "board": {
+    "width": 1100,
+    "height": 720,
+    "clearance": 0.25,
+    "minWidth": 0.2
+  },
+  "settings": {
+    "dt": 0.00005,
+    "stepsPerFrame": 12,
+    "window": 0.04
+  }
+}

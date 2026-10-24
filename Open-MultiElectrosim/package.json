@@ -1,0 +1,7 @@
+{
+  "name": "open-multielectrosim", "version": "1.0.0", "private": true,
+  "description": "Local electronics workbench with mixed-signal simulation, PCB editor and live 3D preview",
+  "type": "module", "engines": {"node": ">=20"},
+  "scripts": {"start": "node server.js", "dev": "node server.js", "test": "node --test test/*.test.js"},
+  "license": "MIT"
+}

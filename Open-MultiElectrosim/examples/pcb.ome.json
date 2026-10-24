@@ -1,0 +1,250 @@
+{
+  "format": "ome-project",
+  "version": 1,
+  "name": "Routed LED driver board",
+  "parts": [
+    {
+      "id": "v1",
+      "type": "dc",
+      "x": 200,
+      "y": 300,
+      "rotation": 90,
+      "ref": "V1",
+      "values": {
+        "voltage": 5
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 120,
+        "y": 150,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "r1",
+      "type": "resistor",
+      "x": 460,
+      "y": 200,
+      "rotation": 0,
+      "ref": "R1",
+      "values": {
+        "resistance": 330
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 320,
+        "y": 150,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "d1",
+      "type": "led",
+      "x": 680,
+      "y": 330,
+      "rotation": 90,
+      "ref": "D1",
+      "values": {
+        "drop": 1.8,
+        "onResistance": 10
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 500,
+        "y": 230,
+        "rotation": 90
+      }
+    },
+    {
+      "id": "g1",
+      "type": "ground",
+      "x": 200,
+      "y": 460,
+      "rotation": 0,
+      "ref": "G1",
+      "values": {},
+      "firmware": "",
+      "footprint": {
+        "x": 900,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "ch1",
+      "type": "scope",
+      "x": 880,
+      "y": 350,
+      "rotation": 90,
+      "ref": "CH1",
+      "values": {},
+      "firmware": "",
+      "footprint": {
+        "x": 150,
+        "y": 440,
+        "rotation": 0
+      }
+    }
+  ],
+  "wires": [
+    {
+      "id": "w0",
+      "a": "v1:1",
+      "b": "r1:1",
+      "points": [
+        {
+          "x": 200,
+          "y": 200
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w1",
+      "a": "r1:2",
+      "b": "d1:1",
+      "points": [
+        {
+          "x": 680,
+          "y": 200
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w2",
+      "a": "d1:2",
+      "b": "g1:GND",
+      "points": [
+        {
+          "x": 680,
+          "y": 460
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w3",
+      "a": "v1:2",
+      "b": "g1:GND",
+      "points": [],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w4",
+      "a": "ch1:1",
+      "b": "d1:1",
+      "points": [
+        {
+          "x": 880,
+          "y": 240
+        },
+        {
+          "x": 680,
+          "y": 240
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w5",
+      "a": "ch1:2",
+      "b": "g1:GND",
+      "points": [
+        {
+          "x": 880,
+          "y": 460
+        }
+      ],
+      "color": "#7bdcba"
+    }
+  ],
+  "traces": [
+    {
+      "id": "track0",
+      "a": "v1:1",
+      "b": "r1:1",
+      "net": 1,
+      "layer": "F.Cu",
+      "width": 0.6,
+      "points": [
+        {
+          "x": 81.9,
+          "y": 150
+        },
+        {
+          "x": 81.9,
+          "y": 90
+        },
+        {
+          "x": 281.9,
+          "y": 90
+        },
+        {
+          "x": 281.9,
+          "y": 150
+        }
+      ]
+    },
+    {
+      "id": "track1",
+      "a": "r1:2",
+      "b": "d1:1",
+      "net": 2,
+      "layer": "F.Cu",
+      "width": 0.6,
+      "points": [
+        {
+          "x": 358.1,
+          "y": 150
+        },
+        {
+          "x": 500,
+          "y": 150
+        },
+        {
+          "x": 500,
+          "y": 191.9
+        }
+      ]
+    },
+    {
+      "id": "track2",
+      "a": "d1:2",
+      "b": "v1:2",
+      "net": 0,
+      "layer": "F.Cu",
+      "width": 0.6,
+      "points": [
+        {
+          "x": 500,
+          "y": 268.1
+        },
+        {
+          "x": 500,
+          "y": 350
+        },
+        {
+          "x": 158.1,
+          "y": 350
+        },
+        {
+          "x": 158.1,
+          "y": 150
+        }
+      ]
+    }
+  ],
+  "vias": [],
+  "board": {
+    "width": 650,
+    "height": 450,
+    "clearance": 0.25,
+    "minWidth": 0.2
+  },
+  "settings": {
+    "dt": 0.00005,
+    "stepsPerFrame": 12,
+    "window": 0.04
+  }
+}

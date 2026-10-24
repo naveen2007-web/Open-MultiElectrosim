@@ -1,0 +1,217 @@
+{
+  "format": "ome-project",
+  "version": 1,
+  "name": "Precision voltage divider",
+  "parts": [
+    {
+      "id": "v1",
+      "type": "dc",
+      "x": 220,
+      "y": 300,
+      "rotation": 90,
+      "ref": "V1",
+      "values": {
+        "voltage": 10
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 150,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "r1",
+      "type": "resistor",
+      "x": 460,
+      "y": 200,
+      "rotation": 0,
+      "ref": "R1",
+      "values": {
+        "resistance": 1000
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 400,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "r2",
+      "type": "resistor",
+      "x": 650,
+      "y": 330,
+      "rotation": 90,
+      "ref": "R2",
+      "values": {
+        "resistance": 1000
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 650,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "g1",
+      "type": "ground",
+      "x": 220,
+      "y": 460,
+      "rotation": 0,
+      "ref": "G1",
+      "values": {},
+      "firmware": "",
+      "footprint": {
+        "x": 900,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "ch1",
+      "type": "scope",
+      "x": 820,
+      "y": 285,
+      "rotation": 90,
+      "ref": "CH1",
+      "values": {},
+      "firmware": "",
+      "footprint": {
+        "x": 150,
+        "y": 440,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "ch2",
+      "type": "scope",
+      "x": 900,
+      "y": 390,
+      "rotation": 90,
+      "ref": "CH2",
+      "values": {},
+      "firmware": "",
+      "footprint": {
+        "x": 400,
+        "y": 440,
+        "rotation": 0
+      }
+    }
+  ],
+  "wires": [
+    {
+      "id": "w0",
+      "a": "v1:1",
+      "b": "r1:1",
+      "points": [
+        {
+          "x": 220,
+          "y": 200
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w1",
+      "a": "r1:2",
+      "b": "r2:1",
+      "points": [
+        {
+          "x": 650,
+          "y": 200
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w2",
+      "a": "r2:2",
+      "b": "g1:GND",
+      "points": [
+        {
+          "x": 650,
+          "y": 460
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w3",
+      "a": "v1:2",
+      "b": "g1:GND",
+      "points": [],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w4",
+      "a": "ch1:1",
+      "b": "r1:2",
+      "points": [
+        {
+          "x": 820,
+          "y": 200
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w5",
+      "a": "ch1:2",
+      "b": "g1:GND",
+      "points": [
+        {
+          "x": 820,
+          "y": 460
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w6",
+      "a": "ch2:1",
+      "b": "v1:1",
+      "points": [
+        {
+          "x": 900,
+          "y": 120
+        },
+        {
+          "x": 220,
+          "y": 120
+        }
+      ],
+      "color": "#e9bc74"
+    },
+    {
+      "id": "w7",
+      "a": "ch2:2",
+      "b": "g1:GND",
+      "points": [
+        {
+          "x": 900,
+          "y": 500
+        },
+        {
+          "x": 220,
+          "y": 500
+        }
+      ],
+      "color": "#e9bc74"
+    }
+  ],
+  "traces": [],
+  "vias": [],
+  "board": {
+    "width": 1100,
+    "height": 720,
+    "clearance": 0.25,
+    "minWidth": 0.2
+  },
+  "settings": {
+    "dt": 0.00005,
+    "stepsPerFrame": 12,
+    "window": 0.04
+  }
+}

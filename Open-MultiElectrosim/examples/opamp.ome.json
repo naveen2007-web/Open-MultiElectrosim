@@ -1,0 +1,154 @@
+{
+  "format": "ome-project",
+  "version": 1,
+  "name": "Op-amp voltage follower",
+  "parts": [
+    {
+      "id": "v1",
+      "type": "dc",
+      "x": 200,
+      "y": 240,
+      "rotation": 90,
+      "ref": "V1",
+      "values": {
+        "voltage": 2
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 150,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "u1",
+      "type": "op-amp",
+      "x": 520,
+      "y": 300,
+      "rotation": 0,
+      "ref": "U1",
+      "values": {
+        "gain": 100000,
+        "low": 0,
+        "high": 5
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 400,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "g1",
+      "type": "ground",
+      "x": 200,
+      "y": 500,
+      "rotation": 0,
+      "ref": "G1",
+      "values": {},
+      "firmware": "",
+      "footprint": {
+        "x": 650,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "ch1",
+      "type": "scope",
+      "x": 800,
+      "y": 340,
+      "rotation": 90,
+      "ref": "CH1",
+      "values": {},
+      "firmware": "",
+      "footprint": {
+        "x": 900,
+        "y": 160,
+        "rotation": 0
+      }
+    }
+  ],
+  "wires": [
+    {
+      "id": "w0",
+      "a": "v1:1",
+      "b": "u1:+",
+      "points": [
+        {
+          "x": 330,
+          "y": 192
+        },
+        {
+          "x": 330,
+          "y": 318
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w1",
+      "a": "v1:2",
+      "b": "g1:GND",
+      "points": [],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w2",
+      "a": "u1:OUT",
+      "b": "u1:-",
+      "points": [
+        {
+          "x": 650,
+          "y": 300
+        },
+        {
+          "x": 650,
+          "y": 190
+        },
+        {
+          "x": 400,
+          "y": 190
+        },
+        {
+          "x": 400,
+          "y": 282
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w3",
+      "a": "u1:OUT",
+      "b": "ch1:1",
+      "points": [],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w4",
+      "a": "ch1:2",
+      "b": "g1:GND",
+      "points": [
+        {
+          "x": 800,
+          "y": 500
+        }
+      ],
+      "color": "#7bdcba"
+    }
+  ],
+  "traces": [],
+  "vias": [],
+  "board": {
+    "width": 1100,
+    "height": 720,
+    "clearance": 0.25,
+    "minWidth": 0.2
+  },
+  "settings": {
+    "dt": 0.00005,
+    "stepsPerFrame": 12,
+    "window": 0.04
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "format": "ome-project",
+  "version": 1,
+  "name": "Arduino GPIO firmware lab",
+  "parts": [
+    {
+      "id": "u1",
+      "type": "uno",
+      "x": 400,
+      "y": 350,
+      "rotation": 0,
+      "ref": "U1",
+      "values": {
+        "high": 5
+      },
+      "firmware": "void setup() {\n  pinMode(2, OUTPUT);\n}\nvoid loop() {\n  digitalWrite(2, HIGH);\n  delay(500);\n  digitalWrite(2, LOW);\n  delay(500);\n}",
+      "footprint": {
+        "x": 150,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "v1",
+      "type": "dc",
+      "x": 150,
+      "y": 220,
+      "rotation": 90,
+      "ref": "V1",
+      "values": {
+        "voltage": 5
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 400,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "r1",
+      "type": "resistor",
+      "x": 650,
+      "y": 300,
+      "rotation": 0,
+      "ref": "R1",
+      "values": {
+        "resistance": 330
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 650,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "d1",
+      "type": "led",
+      "x": 820,
+      "y": 400,
+      "rotation": 90,
+      "ref": "D1",
+      "values": {
+        "drop": 1.8,
+        "onResistance": 10
+      },
+      "firmware": "",
+      "footprint": {
+        "x": 900,
+        "y": 160,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "g1",
+      "type": "ground",
+      "x": 180,
+      "y": 620,
+      "rotation": 0,
+      "ref": "G1",
+      "values": {},
+      "firmware": "",
+      "footprint": {
+        "x": 150,
+        "y": 440,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "ch1",
+      "type": "scope",
+      "x": 950,
+      "y": 400,
+      "rotation": 90,
+      "ref": "CH1",
+      "values": {},
+      "firmware": "",
+      "footprint": {
+        "x": 400,
+        "y": 440,
+        "rotation": 0
+      }
+    }
+  ],
+  "wires": [
+    {
+      "id": "w0",
+      "a": "v1:1",
+      "b": "u1:VCC",
+      "points": [],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w1",
+      "a": "v1:2",
+      "b": "g1:GND",
+      "points": [],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w2",
+      "a": "u1:GND",
+      "b": "g1:GND",
+      "points": [],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w3",
+      "a": "u1:D2",
+      "b": "r1:1",
+      "points": [],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w4",
+      "a": "r1:2",
+      "b": "d1:1",
+      "points": [
+        {
+          "x": 820,
+          "y": 300
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w5",
+      "a": "d1:2",
+      "b": "g1:GND",
+      "points": [
+        {
+          "x": 820,
+          "y": 620
+        }
+      ],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w6",
+      "a": "ch1:1",
+      "b": "r1:1",
+      "points": [],
+      "color": "#7bdcba"
+    },
+    {
+      "id": "w7",
+      "a": "ch1:2",
+      "b": "g1:GND",
+      "points": [
+        {
+          "x": 950,
+          "y": 620
+        }
+      ],
+      "color": "#7bdcba"
+    }
+  ],
+  "traces": [],
+  "vias": [],
+  "board": {
+    "width": 1100,
+    "height": 720,
+    "clearance": 0.25,
+    "minWidth": 0.2
+  },
+  "settings": {
+    "dt": 0.001,
+    "stepsPerFrame": 30,
+    "window": 2
+  }
+}

@@ -1,0 +1,16 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {spawn} from 'node:child_process';import {mkdtemp,rm} from 'node:fs/promises';import os from 'node:os';import path from 'node:path';import {example} from '../public/js/examples.js';
+test('account signup, signin, private project isolation, update, logout and CSRF guard',async()=>{
+ const dir=await mkdtemp(path.join(os.tmpdir(),'ome-test-')),port=19000+Math.floor(Math.random()*10000);const child=spawn(process.execPath,['server.js'],{cwd:new URL('..',import.meta.url),env:{...process.env,PORT:String(port),OME_DATA_DIR:dir},stdio:['ignore','pipe','pipe']});
+ try{await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Server startup timeout')),8000);child.stdout.on('data',d=>{if(String(d).includes('Open http')){clearTimeout(timer);resolve()}});child.on('error',reject);child.on('exit',code=>{if(code)reject(Error('Server failed '+code))});});const base=`http://127.0.0.1:${port}`;const request=async(url,method='GET',data,cookie='',origin)=>{const r=await fetch(base+url,{method,headers:{'Content-Type':'application/json',...(cookie?{Cookie:cookie}:{}),...(origin?{Origin:origin}:{})},...(data?{body:JSON.stringify(data)}:{})});return {status:r.status,body:await r.json(),cookie:r.headers.get('set-cookie')?.split(';')[0]}};
+ assert.equal((await request('/api/projects')).status,401);
+ const a=await request('/api/auth/signup','POST',{name:'Test Engineer',email:'qa@example.test',password:'test-password-123'});assert.equal(a.status,201);assert.ok(a.cookie);assert.ok(!JSON.stringify(a.body).includes('hash'));assert.equal((await request('/api/auth/signup','POST',{email:'qa@example.test',password:'test-password-123'})).status,409);
+ const saved=await request('/api/projects','POST',example('divider'),a.cookie);assert.equal(saved.status,201);const id=saved.body.id;assert.equal((await request('/api/projects/'+id,'GET',null,a.cookie)).body.project.name,'Precision voltage divider');
+ const b=await request('/api/auth/signup','POST',{email:'other@example.test',password:'test-password-123'});assert.equal((await request('/api/projects/'+id,'GET',null,b.cookie)).status,404);
+ const cp=example('logic');cp.name='Updated circuit';assert.equal((await request('/api/projects/'+id,'PUT',cp,a.cookie)).status,200);assert.equal((await request('/api/projects','GET',null,a.cookie)).body.projects[0].name,'Updated circuit');
+ assert.equal((await request('/api/projects','POST',cp,a.cookie,'https://evil.example')).status,403);
+ assert.equal((await request('/api/auth/signin','POST',{email:'qa@example.test',password:'wrong-password'})).status,401);
+ assert.equal((await request('/api/auth/signin','POST',{email:'qa@example.test',password:'test-password-123'})).status,200);
+ await request('/api/auth/signout','POST',null,a.cookie);assert.equal((await request('/api/projects','GET',null,a.cookie)).status,401);
+ assert.equal((await fetch(base+'/signin')).status,200);assert.equal((await fetch(base+'/signup')).status,200);assert.equal((await fetch(base+'/js/engine.js')).status,200);
+ }finally{child.kill();await new Promise(resolve=>child.once('exit',resolve));await rm(dir,{recursive:true,force:true});}
+});
